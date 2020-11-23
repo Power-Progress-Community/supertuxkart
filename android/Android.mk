@@ -137,6 +137,16 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 
+# Graphics engine
+LOCAL_MODULE       := graphics_engine
+LOCAL_PATH         := .
+LOCAL_CPP_FEATURES += rtti
+LOCAL_SRC_FILES    := $(wildcard ../lib/graphics_engine/src/*.c)
+LOCAL_CFLAGS       := -I../lib/graphics_engine/include
+include $(BUILD_STATIC_LIBRARY)
+include $(CLEAR_VARS)
+
+
 # MCPP
 LOCAL_MODULE       := mcpp
 LOCAL_PATH         := .
@@ -179,6 +189,7 @@ LOCAL_CFLAGS       := -I../lib/irrlicht/source/Irrlicht/ \
                       -Iobj/libpng/                      \
                       -Iobj/zlib/                        \
                       -I../lib/sdl2/include/             \
+                      -I../lib/graphics_engine/include   \
                       -DMOBILE_STK                       \
                       -DANDROID_PACKAGE_CALLBACK_NAME=$(PACKAGE_CALLBACK_NAME)
 LOCAL_CPPFLAGS     := -std=gnu++0x
@@ -241,7 +252,7 @@ LOCAL_CPP_FEATURES += rtti exceptions
 LOCAL_SRC_FILES    := $(wildcard ../src/*.cpp)     \
                       $(wildcard ../src/*/*.cpp)   \
                       $(wildcard ../src/*/*/*.cpp)
-LOCAL_LDLIBS       := -llog -landroid -lGLESv1_CM -lGLESv3 -lOpenSLES -ldl -lm
+LOCAL_LDLIBS       := -llog -landroid -lGLESv1_CM -lGLESv2 -lOpenSLES -ldl -lm
 LOCAL_CFLAGS       := -I../lib/angelscript/include      \
                       -I../lib/bullet/src               \
                       -I../lib/sheenbidi/Headers        \
@@ -250,6 +261,7 @@ LOCAL_CFLAGS       := -I../lib/angelscript/include      \
                       -I../lib/irrlicht/include         \
                       -I../lib/irrlicht/source/Irrlicht \
                       -I../lib/graphics_utils           \
+                      -I../lib/graphics_engine/include  \
                       -I../lib/mcpp                     \
                       -I../lib/sdl2/include             \
                       -I../lib/tinygettext/include      \
@@ -277,7 +289,7 @@ LOCAL_CPPFLAGS     := -std=gnu++0x
 LOCAL_STATIC_LIBRARIES := irrlicht bullet enet ifaddrs angelscript mcpp SDL2 \
                           vorbisfile vorbis ogg openal curl libssl libcrypto \
                           c++_static sheenbidi harfbuzz freetype \
-                          tinygettext graphics_utils
+                          tinygettext graphics_utils graphics_engine
 
 include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
