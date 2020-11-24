@@ -2362,9 +2362,9 @@ inline void COpenGLExtensionHandler::extGlProgramParameteri(GLhandleARB program,
 	if (queryFeature(EVDF_GEOMETRY_SHADER))
 	{
 		if (pGlProgramParameteriARB)
-			pGlProgramParameteriARB(program, pname, value);
+			pGlProgramParameteriARB((size_t)program, pname, value);
 		else if (pGlProgramParameteriEXT)
-			pGlProgramParameteriEXT(program, pname, value);
+			pGlProgramParameteriEXT((size_t)program, pname, value);
 	}
 #elif defined(GL_ARB_geometry_shader4)
 	glProgramParameteriARB((size_t)program, pname, value);
